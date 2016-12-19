@@ -1,5 +1,5 @@
 # RecommendationSystem
-Recommendation System for recommending new authors and books to users from books they have read.
+Recommendation System for recommending locations for people to travel to in a new city.
 # Students
 This application is developed by:
 
