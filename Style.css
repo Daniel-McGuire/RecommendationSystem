@@ -1,8 +1,62 @@
+* {
+  @include box-sizing(border-box);
+}
+
+input[type=checkbox] {
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
+   /* makes sure checkboxes are not visible on the page*/
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 5px;
+    border: none;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    /*display: table;*/
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 19.5%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.buttonStyle{
+	background-color: #cfe2e2;
+    border: none;
+    color: #696262;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+	font-family: Courier New;
+}
+
 header{
 }
 
 body{
-	background-color: #B0E0E6;
+	background-color: #F2F2F2;
 }
 
 h1{
@@ -21,11 +75,28 @@ p{
 }
 
 #selection{
+	
 	background-color: white;
 	color: #696262;
 	font-family: courier new;
 	font-size: 25px;
 	font-weight: bold;
+	margin: auto;
+	padding:0;
+}
+
+#searchBtn{
+	background-color: #4682B4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+	margin-left: 16%;
+    cursor: pointer;
+	font-family: Courier New;
 }
 
 #map{
