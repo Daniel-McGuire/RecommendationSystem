@@ -4,6 +4,7 @@
 
 <head>
 <link rel = "stylesheet" href="Style.css"> <!-- link style sheet-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Recommendation system </title>
 
 </head>
@@ -17,18 +18,34 @@
 <br>
 </div>
 
-<div id = "selection">
-<form>
-<input type="checkbox" name="parks" value="Parks">Parks<br>
-<input type="checkbox" name="cinemas" value="Cinemas">Cinemas<br>
-<input type="checkbox" name="restaurants" value="Restaurants">Restaurants<br>
-<input type="checkbox" name="pubs" value="Pubs">Pubs<br>
-<input type="checkbox" name="museums" value="Museums">Museums<br>
-<input type="checkbox" name="gardens" value="Gardens">Gardens<br>
-<input type="checkbox" name="castles" value="Casltes">Castles<br>
-<br>
-<input type="button" name="search" value="Search"><br>
-</form>
+<div id = "selection" class="col-100">
+
+        <label for "parks" class="buttonStyle col-3" >Parks</label>
+		<input type="checkbox" id="parks">
+		
+        <label for "cinemas" class="buttonStyle col-3">Cinemas</label>
+		<input type="checkbox" id="cinemas">
+		
+        <label for "restaurants" class="buttonStyle col-3">Restaurants</label>
+		<input type="checkbox" id="restaurants">
+		
+        <label for "pubs" class="buttonStyle col-3">Pubs</label>
+		<input type="checkbox" id="pubs">
+		
+        <label for "museums" class="buttonStyle col-3">Museums</label>
+		<input type="checkbox" id="museums">
+		
+        <label for "gardens" class="buttonStyle col-3">Gardens</label>
+		<input type="checkbox" id="gardens">
+		
+        <label for "castles" class="buttonStyle col-3">Castles</label>
+		<input type="checkbox" id="castles">
+		
+        <label for "leisurecentre" class = "buttonStyle col-3">Leisure Centres</label>
+		<input type="checkbox" id="leisureCentre">
+
+		<input type="button" id="searchBtn" value="Search" class = "col-8">
+
 </div>
 
 
