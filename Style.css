@@ -1,0 +1,33 @@
+header{
+}
+
+body{
+	background-color: #B0E0E6;
+}
+
+h1{
+	color: #696262;
+	text-align: center;
+	letter-spacing: 3px;
+	font-family: Courier New;
+	
+}
+
+p{
+	text-align: center;
+	font-family: Arial;
+	color: gray;
+	
+}
+
+#selection{
+	background-color: white;
+	color: #696262;
+	font-family: courier new;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#map{
+	
+}
