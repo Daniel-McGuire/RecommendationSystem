@@ -4,6 +4,7 @@
 
 <head>
 <link rel = "stylesheet" href="Style.css"> <!-- link style sheet-->
+<script type="text/javascript" src="JavaScript.js"></script> <!--link Javascript doc-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Recommendation system </title>
 
@@ -25,29 +26,29 @@
 
 <div id = "selection" class="col-12" align="center">
    
-        <label for "parks" class="buttonStyle col-3" >Parks</label>
-		<input type="checkbox" id="parks">
+        <label for="parks" class="buttonStyle col-3" id = "parksLbl">Parks</label>
+		<input type="checkbox" id="parks" onchange="checkBoxSelection('parks', 'parksLbl')">
 		
-        <label for "cinemas" class="buttonStyle col-3">Cinemas</label>
-		<input type="checkbox" id="cinemas">
+        <label for="cinemas" class="buttonStyle col-3" id ="cinemaLbl">Cinemas</label>
+		<input type="checkbox" id="cinemas" onchange="checkBoxSelection('cinemas', 'cinemaLbl')">
 		
-        <label for "restaurants" class="buttonStyle col-3">Restaurants</label>
-		<input type="checkbox" id="restaurants">
+        <label for="restaurants" class="buttonStyle col-3" id = "restaurantsLbl">Restaurants</label>
+		<input type="checkbox" id="restaurants" onchange="checkBoxSelection('restaurants', 'restaurantsLbl')">
 		
-        <label for "pubs" class="buttonStyle col-3">Pubs</label>
-		<input type="checkbox" id="pubs">
+        <label for="pubs" class="buttonStyle col-3" id = "pubsLbl">Pubs</label>
+		<input type="checkbox" id="pubs" onchange="checkBoxSelection('pubs', 'pubsLbl')">
 		
-        <label for "museums" class="buttonStyle col-3">Museums</label>
-		<input type="checkbox" id="museums">
+        <label for="museums" class="buttonStyle col-3" id = "MuseumsLbl">Museums</label>
+		<input type="checkbox" id="museums" onchange="checkBoxSelection('museums', 'museumsLbl')">
 		
-        <label for "gardens" class="buttonStyle col-3">Gardens</label>
-		<input type="checkbox" id="gardens">
+        <label for="gardens" class="buttonStyle col-3" id = "gardensLbl">Gardens</label>
+		<input type="checkbox" id="gardens" onchange="checkBoxSelection('gardens', 'gardensLbl')">
 		
-        <label for "castles" class="buttonStyle col-3">Castles</label>
-		<input type="checkbox" id="castles">
+        <label for="castles" class="buttonStyle col-3" id = "castlesLbl">Castles</label>
+		<input type="checkbox" id="castles" onchange="checkBoxSelection('castles', 'castlesLbl')">
 		
-        <label for "leisurecentre" class = "buttonStyle col-3">Leisure Centres</label>
-		<input type="checkbox" id="leisureCentre">
+        <label for="leisurecentre" class = "buttonStyle col-3" id = "leiCenLbl">Leisure Centres</label>
+		<input type="checkbox" id="leisureCentre" onchange="checkBoxSelection('leisureCentre', 'leiCenLbl')">
 
 		<input type="button" id="searchBtn" value="Search" class = "col-8">
 
@@ -56,7 +57,7 @@
 
 
 
-<div id = "map">
+<div id = "map" class="col-9">
 
 </div>
 
