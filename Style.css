@@ -43,7 +43,7 @@ table {
 	background-color: #cfe2e2;
     border: none;
     color: #696262;
-    padding: 15px 32px;
+    padding: 10px 30px;
     text-align: center;
     display: inline-block;
     font-size: 15px;
@@ -51,6 +51,7 @@ table {
     cursor: pointer;
 	font-family: Courier New;
 }
+
 
 header{
 }
@@ -102,7 +103,7 @@ p{
 	background-color: #4682B4;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 30px;
     text-align: center;
     display: inline-block;
     font-size: 20px;
