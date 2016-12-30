@@ -74,6 +74,19 @@ p{
 	
 }
 
+#userInput{
+	color: #696262;
+	font-family: courier new;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#input{
+	color: #4682B4;
+	font-family: Forte;
+	font-size: 30px;
+}
+
 #selection{
 	
 	background-color: white;
