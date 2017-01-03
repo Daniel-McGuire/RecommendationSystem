@@ -3,17 +3,10 @@ Recommendation System for recommending locations for people to travel to in a ne
 # Students
 This application is developed by:
 
-⋅⋅* Daniel McGuire - ST20074252
-⋅⋅* Rhiannon Ayres - 
-
-# Change Log
-
-⋅⋅1.
-⋅⋅2.
-⋅⋅3.
+Daniel McGuire - ST20074252
+Rhiannon Ayres -
 
 # TODO List
 
-⋅⋅1.
-⋅⋅2.
-⋅⋅3.
+* Get coordinates from search and plot on Google maps
+* Fix layout
