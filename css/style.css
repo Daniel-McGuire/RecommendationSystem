@@ -1,0 +1,142 @@
+* {
+  @include box-sizing(border-box);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+
+}
+body{
+
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+input[type=checkbox] {
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
+   /* makes sure checkboxes are not visible on the page*/
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 5px;
+    border: none;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    /*display: table;*/
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+.buttonStyle{
+	background-color: #cfe2e2;
+    border: none;
+    color: #696262;
+    padding: 10px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+body{
+	background-color: #F2F2F2;
+}
+#header{
+
+width: 600px;
+margin-left: auto;
+margin-right: auto;
+
+}
+h1{
+	color: #696262;
+	text-align: center;
+
+}
+
+#results{
+	text-align: center;
+	color: gray;
+	height: 240px;
+	background-color: white;
+}
+
+
+p{
+	text-align: center;
+	color: gray;
+
+}
+
+#input{
+  margin-top: 100px;
+}
+
+#search-btn {
+background:#0099ff;
+color:white;
+padding:10px 20px;
+border-radius:0 5px 5px 0;
+-moz-border-radius:0 5px 5px 0;
+-webkit-border-radius:0 5px 5px 0;
+-o-border-radius:0 5px 5px 0;
+border:0 none;
+font-weight:bold;
+font-size: 22px;
+
+}
+
+#search-box {
+background: white;
+padding:10px;
+ border-radius:5px 0 0 5px;
+-moz-border-radius:5px 0 0 5px;
+-webkit-border-radius:5px 0 0 5px;
+-o-border-radius:5px 0 0 5px;
+border:0 none;
+width:500px;
+font-size: 22px;
+ }
+
+
+
+#input{
+	color: #4682B4;
+	font-size: 30px;
+}
+
+#selection{
+
+	color: #696262;
+	font-size: 25px;
+	font-weight: bold;
+width: 500px;
+height: 300px;
+}
+
+#searchBtn{
+	background-color: #4682B4;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+	margin-left: 16%;
+    cursor: pointer;
+}
+
+#map{
+	height: 240px;
+}
