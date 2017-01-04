@@ -72,8 +72,6 @@ function getLatLong(data){
 		
 	//plot latitude and longitude on map
 	
-	console.log(latitude + longitude);
-	
 	drawMap(latitude, longitude); 
 }
 
