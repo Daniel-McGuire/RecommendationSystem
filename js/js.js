@@ -1,17 +1,17 @@
 
  //this is the function for the map when the page first loads.
 	  var map;
-	  function initMap() { 
+	  function initMap() {
         map = new google.maps.Map(document.getElementById('map'), { //draw map in map div
           center: {lat: 51.5, lng: -0.11666666666666667}, //position center based on latitude and lonitude - United Kingdom
           zoom: 7
         });
       }
 
-//changes the colour of the buttons if they are checked. 
-function checkBoxSelection(CheckboxID, LblID) { 
-	var labelID = document.getElementById(LblID); 
-	
+//changes the colour of the buttons if they are checked.
+function checkBoxSelection(CheckboxID, LblID) {
+	var labelID = document.getElementById(LblID);
+
 	if(document.getElementById(CheckboxID).checked == true) {
 	labelID.style.backgroundColor= "#789E9E";
 	labelID.style.color= "white";
@@ -19,13 +19,13 @@ function checkBoxSelection(CheckboxID, LblID) {
 	else {
 		labelID.style.backgroundColor= "#cfe2e2";
 		labelID.style.color= "#696262"
-	} 
-	
+	}
+
 }
-	  
-	  
-var resultsPanel = document.getElementById("results"); 
-var btn = document.getElementById("search-btn"); 
+
+
+var resultsPanel = document.getElementById("results");
+var btn = document.getElementById("search-btn");
 
 btn.addEventListener("click", function() { //when button is clicked...
 
@@ -47,14 +47,14 @@ var query = [  //save SPARQL query in JavaScript variable called 'query'
 ].join(" ");
 
 //create variable for the URI of the query called 'queryURl'
-var queryUrl= url+"?query="+ encodeURIComponent(query) +"&format=json"; 
+var queryUrl= url+"?query="+ encodeURIComponent(query) +"&format=json";
 var HTTPRequest = new XMLHttpRequest();
 
  HTTPRequest.open('GET', queryUrl); //'POST' = send data 'GET' = receive
  HTTPRequest.onload = function(){
 	console.log(HTTPRequest.responseText); //prints the JSON to the console
-	var JSONData = JSON.parse(HTTPRequest.responseText); 
-	getLatLong(JSONData); 
+	var JSONData = JSON.parse(HTTPRequest.responseText);
+	getLatLong(JSONData);
 };
 
 HTTPRequest.send();
@@ -63,16 +63,16 @@ HTTPRequest.send();
 
 function getLatLong(data){
 	//loop through JSON to get results
-	
-	for (i = 0; i< data.results.bindings.length; i++){  
+
+	for (i = 0; i< data.results.bindings.length; i++){
 			var latitude =  parseFloat(data.results.bindings[i].lat.value);
 			var longitude = parseFloat(data.results.bindings[i].long.value);
 			var city = data.results.bindings[i].city.value;
-		}	
-		
+		}
+
 	//plot latitude and longitude on map
-	
-	drawMap(latitude, longitude); 
+
+	drawMap(latitude, longitude);
 }
 
 function drawMap(latValue, longValue) {
@@ -82,8 +82,11 @@ function drawMap(latValue, longValue) {
           zoom: 10
         });
       }
-      
-	  
 
+//Show map and results div on click on search
 
-	
+			function showDiv() {
+			   document.getElementById('results').style.display = "block";
+				 document.getElementById('map').style.display = "block";
+
+			}
