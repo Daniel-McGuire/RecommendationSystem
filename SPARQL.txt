@@ -1,27 +1,4 @@
-****SPARQL query for Football stadiums****
-
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
-
-SELECT DISTINCT ?location ?stadiums (MAX(?lat)) (MAX(?long))
-WHERE {
-  ?s rdf:type schema:Place;
-	dct:subject dbc:Football_League_venues.
-  ?l dbo:location ?x;
-	geo:lat ?lat;
-	geo:long ?long.
-  FILTER regex(?x, "England", "i")
-  ?s dbo:location ?x.
-  ?s rdfs:label ?stadiums.
-  FILTER langMatches( lang(?stadiums), "EN" )
-  ?x rdfs:label ?location.   
-  FILTER langMatches( lang(?location), "EN" ) 
-}
-
-
-***SPARQL query for Museums***
+***Museums***
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -44,7 +21,7 @@ WHERE {
 
 
 
-**SPARQL query for parks***
+**Parks***
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -62,6 +39,71 @@ WHERE {
   ?p rdfs:label ?park.
   FILTER langMatches( lang(?park), "EN" ) #sets language
   ?x rdfs:label ?location.
+  FILTER langMatches( lang(?location), "EN" ) 
+}
+
+*****Castles*****
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?location ?castles (MAX(?lat)) (MAX(?long))
+WHERE {
+  ?c rdf:type dbo:Castle.
+  ?l dbo:location ?x;
+	geo:lat ?lat;
+	geo:long ?long.
+  ?c dbo:location ?x.
+  ?c rdfs:label ?castles.  
+  ?x rdfs:label ?location.   
+  FILTER langMatches( lang(?castles), "EN" )
+  FILTER langMatches( lang(?location), "EN" ) 
+  FILTER regex(?x, "Wales", "i")
+}
+
+
+***historic buildings***
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+
+SELECT DISTINCT ?location ?buildings (MAX(?lat)) (MAX(?long))
+WHERE {
+  ?s rdf:type dbo:HistoricBuilding.
+  ?l dbo:location ?x;
+	geo:lat ?lat;
+	geo:long ?long.
+  FILTER regex(?x, "Wales", "i")
+  ?s dbo:location ?x.
+  ?s rdfs:label ?buildings.
+  FILTER langMatches( lang(?buildings), "EN" )
+  ?x rdfs:label ?location.   
+  FILTER langMatches( lang(?location), "EN" ) 
+}
+
+***shopping centres***
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+
+SELECT DISTINCT ?location ?shopping_centre (MAX(?lat)) (MAX(?long))
+WHERE {
+  ?s rdf:type dbo:ShoppingMall.
+  ?l dbo:location ?x;
+	geo:lat ?lat;
+	geo:long ?long.
+  FILTER regex(?x, "Cardiff", "i")
+  ?s dbo:location ?x.
+  ?s rdfs:label ?shopping_centre.
+  FILTER langMatches( lang(?shopping_centre), "EN" )
+  ?x rdfs:label ?location.   
   FILTER langMatches( lang(?location), "EN" ) 
 }
 
