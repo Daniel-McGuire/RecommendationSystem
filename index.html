@@ -13,23 +13,32 @@
 </head>
 
 <body>
-
+<div id="main">
 <div id = "header">
 <h1> Recommendation System </h1>
 
 <p> Enter a location and we will find local attractions for you! </p>
-
+</div>
 <div id = "input">
 
 <!-- searching is not ready yet -->
 <!--<form id="searchthis" action="/search" style="display:inline;" method="get">*/-->
 <input id="search-box" name="q" size="40" type="text" placeholder="Start searching now..."/>
-<input id="search-btn" value="Go" type="submit"/>
-
-
+<input id="search-btn" value="Go" type="submit" onclick="showDiv()"/>
 </div>
-
+<p>
+Or...
+</p>
+<div class="selection_box">
+  <select>
+    <option value="London">London</option>
+    <option value="Cardiff">Cardiff</option>
+    <option value="Manchester">Manchester</option>
+    <option value="Swansea">Swansea</option>
+  </select>
+</div>
 <br>
+
 
 <div id = "selection" class="col-12" align="center">
 <label for="parks" class="buttonStyle col-3" id = "parksLbl">Parks</label>
@@ -48,12 +57,11 @@
 <input type="checkbox" id="castles" onchange="checkBoxSelection('castles', 'castlesLbl')">
 <label for="Centre" class = "buttonStyle col-3" id = "leiCenLbl">Leisure Centres</label>
 <input type="checkbox" id="Centre" onchange="checkBoxSelection('Centre', 'leiCenLbl')">
-<input type="button" id="searchBtn" value="Search" class = "col-8">
 </div>
 
 
 
-<div id = "map" class="col-7">
+<div id = "map">
 
 </div>
 
@@ -64,7 +72,7 @@
 
 
 
-
+</div>
 <script type="text/javascript" src="js/js.js"></script> <!--link Javascript doc-->
 </body>
 

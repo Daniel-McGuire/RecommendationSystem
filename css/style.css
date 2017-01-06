@@ -19,7 +19,6 @@ input[type=checkbox] {
 
 [class*="col-"] {
     float: left;
-    padding: 5px;
     border: none;
 }
 
@@ -37,20 +36,30 @@ table {
 
 
 .buttonStyle{
-	background-color: #cfe2e2;
+	background-color: #FF8E00;
     border: none;
-    color: #696262;
+    color: white;
     padding: 10px 30px;
     text-align: center;
     display: inline-block;
     font-size: 15px;
     margin: 4px 2px;
     cursor: pointer;
+    border-radius:3px;
+
 }
 
 body{
 	background-color: #F2F2F2;
 }
+#main{
+width: 600px;
+margin-left: auto;
+margin-right: auto;
+
+
+}
+
 #header{
 
 width: 600px;
@@ -78,9 +87,6 @@ p{
 
 }
 
-#input{
-  margin-top: 100px;
-}
 
 #search-btn {
 background:#0099ff;
@@ -93,6 +99,18 @@ border-radius:0 5px 5px 0;
 border:0 none;
 font-weight:bold;
 font-size: 22px;
+}
+#search-btn:active{
+  background:#006DB3;
+  color:white;
+  padding:10px 20px;
+  border-radius:0 5px 5px 0;
+  -moz-border-radius:0 5px 5px 0;
+  -webkit-border-radius:0 5px 5px 0;
+  -o-border-radius:0 5px 5px 0;
+  border:0 none;
+  font-weight:bold;
+  font-size: 22px;
 
 }
 
@@ -106,6 +124,8 @@ padding:10px;
 border:0 none;
 width:500px;
 font-size: 22px;
+color: #a9a9a9;
+
  }
 
 
@@ -113,6 +133,21 @@ font-size: 22px;
 #input{
 	color: #4682B4;
 	font-size: 30px;
+  margin-top: 50px;
+
+}
+
+.selection_box select{
+  background: white;
+  color: #a9a9a9;
+  padding:10px;
+   border-radius:5px 0 0 5px;
+  -moz-border-radius:5px 0 0 5px;
+  -webkit-border-radius:5px 0 0 5px;
+  -o-border-radius:5px 0 0 5px;
+  border:0 none;
+  width:520px;
+  font-size: 22px;
 }
 
 #selection{
@@ -120,8 +155,8 @@ font-size: 22px;
 	color: #696262;
 	font-size: 25px;
 	font-weight: bold;
-width: 500px;
-height: 300px;
+  width: 600px;
+  height: 100px;
 }
 
 #searchBtn{
@@ -139,4 +174,12 @@ height: 300px;
 
 #map{
 	height: 240px;
+  width: 600px;
+  display:none;
+}
+
+#results{
+  width: 600px;
+  display:none;
+
 }
