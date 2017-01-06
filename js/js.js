@@ -13,12 +13,12 @@ function checkBoxSelection(CheckboxID, LblID) {
 	var labelID = document.getElementById(LblID);
 
 	if(document.getElementById(CheckboxID).checked == true) {
-	labelID.style.backgroundColor= "#D57700";
+	labelID.style.backgroundColor= "#789E9E";
 	labelID.style.color= "white";
 	}
 	else {
-		labelID.style.backgroundColor= "#FF8E00";
-		labelID.style.color= "white"
+		labelID.style.backgroundColor= "#cfe2e2";
+		labelID.style.color= "#696262"
 	}
 
 }
@@ -71,8 +71,6 @@ function getLatLong(data){
 		}
 
 	//plot latitude and longitude on map
-
-	console.log(latitude + longitude);
 
 	drawMap(latitude, longitude);
 }
