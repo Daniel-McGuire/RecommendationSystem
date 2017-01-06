@@ -1,0 +1,67 @@
+****SPARQL query for Football stadiums****
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?location ?stadiums (MAX(?lat)) (MAX(?long))
+WHERE {
+  ?s rdf:type schema:Place;
+	dct:subject dbc:Football_League_venues.
+  ?l dbo:location ?x;
+	geo:lat ?lat;
+	geo:long ?long.
+  FILTER regex(?x, "England", "i")
+  ?s dbo:location ?x.
+  ?s rdfs:label ?stadiums.
+  FILTER langMatches( lang(?stadiums), "EN" )
+  ?x rdfs:label ?location.   
+  FILTER langMatches( lang(?location), "EN" ) 
+}
+
+
+***SPARQL query for Museums***
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?location ?museums (MAX(?lat)) (MAX(?long)) #MAX ensures only the maximum latitude and longitude are returned.
+WHERE {
+ ?m rdf:type dbo:Museum.  
+ ?l dbo:location ?x; 
+	geo:lat ?lat;
+	geo:long ?long.
+  FILTER regex(?x, "Cardiff", "i") #will need to filter this depending on user input.  
+  ?m dbo:location ?x.
+  ?m rdfs:label ?museums.
+  FILTER langMatches( lang(?museums), "EN" ) #sets language
+  ?x rdfs:label ?location.
+  FILTER langMatches( lang(?location), "EN" ) 
+}
+
+
+
+**SPARQL query for parks***
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+SELECT DISTINCT ?location ?park (MAX(?lat)) (MAX(?long)) #MAX ensures only the maximum latitude and longitude are returned.
+WHERE {
+ ?p rdf:type dbo:Park.  
+ ?l dbo:location ?x; 
+	geo:lat ?lat;
+	geo:long ?long.
+  FILTER regex(?x, "Cardiff", "i") #will need to filter this depending on user input.  
+  ?p dbo:location ?x.
+  ?p rdfs:label ?park.
+  FILTER langMatches( lang(?park), "EN" ) #sets language
+  ?x rdfs:label ?location.
+  FILTER langMatches( lang(?location), "EN" ) 
+}
+

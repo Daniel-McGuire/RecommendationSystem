@@ -50,7 +50,7 @@ var query = [  //save SPARQL query in JavaScript variable called 'query'
 var queryUrl= url+"?query="+ encodeURIComponent(query) +"&format=json"; 
 var HTTPRequest = new XMLHttpRequest();
 
- HTTPRequest.open('GET', queryUrl); //'POST' = send data
+ HTTPRequest.open('GET', queryUrl); //'POST' = send data 'GET' = receive
  HTTPRequest.onload = function(){
 	console.log(HTTPRequest.responseText); //prints the JSON to the console
 	var JSONData = JSON.parse(HTTPRequest.responseText); 
