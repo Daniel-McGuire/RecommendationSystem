@@ -36,9 +36,9 @@ table {
 
 
 .buttonStyle{
-	background-color: #FF8E00;
+	background-color: #cfe2e2;
     border: none;
-    color: white;
+    color: #696262;
     padding: 10px 30px;
     text-align: center;
     display: inline-block;
@@ -150,14 +150,7 @@ color: #a9a9a9;
   font-size: 22px;
 }
 
-#selection{
 
-	color: #696262;
-	font-size: 25px;
-	font-weight: bold;
-  width: 600px;
-  height: 100px;
-}
 
 #searchBtn{
 	background-color: #4682B4;
