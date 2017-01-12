@@ -74,16 +74,26 @@ function getLatLong(data){
 
 	//plot latitude and longitude on map
 
-	drawMap(latitude, longitude);
+	drawMap(latitude, longitude, location);
 }
 
-function drawMap(latValue, longValue) {
+function drawMap(latValue, longValue, location) {
 		var map;
+		var myLatLong = {lat: latValue, lng: longValue};
+		
         map = new google.maps.Map(document.getElementById('map'), { //draw map in map div
-          center: {lat: latValue, lng: longValue}, //position center based on latitude and lonitude
+          center: myLatLong, //position center based on latitude and lonitude
           zoom: 10
         });
-      }
+		
+		var marker = new google.maps.Marker({
+          position: myLatLong,
+          map: map,
+          title: location 
+		  
+      });
+	  
+}
 
 //Show map and results div on click on search
 
