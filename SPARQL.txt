@@ -8,16 +8,18 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 SELECT DISTINCT ?location ?museums (MAX(?lat)) (MAX(?long)) #MAX ensures only the maximum latitude and longitude are returned.
 WHERE {
  ?m rdf:type dbo:Museum.  
- ?l dbo:location ?x; 
-	geo:lat ?lat;
-	geo:long ?long.
+ ?l dbo:location ?x.
   FILTER regex(?x, "Cardiff", "i") #will need to filter this depending on user input.  
-  ?m dbo:location ?x.
+  ?m dbo:location ?x;
+    geo:lat ?lat;
+	geo:long ?long.
   ?m rdfs:label ?museums.
   FILTER langMatches( lang(?museums), "EN" ) #sets language
   ?x rdfs:label ?location.
   FILTER langMatches( lang(?location), "EN" ) 
 }
+
+
 
 
 
@@ -35,7 +37,9 @@ WHERE {
 	geo:lat ?lat;
 	geo:long ?long.
   FILTER regex(?x, "Cardiff", "i") #will need to filter this depending on user input.  
-  ?p dbo:location ?x.
+  ?p dbo:location ?x;
+    geo:lat ?lat;
+	geo:long ?long.
   ?p rdfs:label ?park.
   FILTER langMatches( lang(?park), "EN" ) #sets language
   ?x rdfs:label ?location.
@@ -74,11 +78,11 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 SELECT DISTINCT ?location ?buildings (MAX(?lat)) (MAX(?long))
 WHERE {
   ?s rdf:type dbo:HistoricBuilding.
-  ?l dbo:location ?x;
-	geo:lat ?lat;
-	geo:long ?long.
+  ?l dbo:location ?x.
   FILTER regex(?x, "Wales", "i")
-  ?s dbo:location ?x.
+  ?s dbo:location ?x;
+    geo:lat ?lat;
+	geo:long ?long.
   ?s rdfs:label ?buildings.
   FILTER langMatches( lang(?buildings), "EN" )
   ?x rdfs:label ?location.   
@@ -96,11 +100,11 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 SELECT DISTINCT ?location ?shopping_centre (MAX(?lat)) (MAX(?long))
 WHERE {
   ?s rdf:type dbo:ShoppingMall.
-  ?l dbo:location ?x;
-	geo:lat ?lat;
-	geo:long ?long.
+  ?l dbo:location ?x.
   FILTER regex(?x, "Cardiff", "i")
-  ?s dbo:location ?x.
+  ?s dbo:location ?x;
+    geo:lat ?lat;
+	geo:long ?long.
   ?s rdfs:label ?shopping_centre.
   FILTER langMatches( lang(?shopping_centre), "EN" )
   ?x rdfs:label ?location.   
