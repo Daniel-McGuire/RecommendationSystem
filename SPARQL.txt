@@ -11,6 +11,7 @@ WHERE {
  ?l dbo:location ?x.
   FILTER regex(?x, "Cardiff", "i") #will need to filter this depending on user input.  
   ?m dbo:location ?x;
+    dbo:country dbr:United_Kingdom;
     geo:lat ?lat;
 	geo:long ?long.
   ?m rdfs:label ?museums.
@@ -110,4 +111,18 @@ WHERE {
   ?x rdfs:label ?location.   
   FILTER langMatches( lang(?location), "EN" ) 
 }
+
+
+"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>",
+	"PREFIX type: <http://dbpedia.org/class/yago/>",
+	"PREFIX prop: <http://dbpedia.org/property/>",
+
+	"SELECT ?lat ?long ?location",
+	"WHERE{",
+	"?a dbo:location ?location;",
+	"geo:lat ?lat;",
+	"geo:long ?long.",
+	"?location dbo:country dbr:United_Kingdom.",
+	"FILTER regex(?location, \"" + document.getElementById("search-box").value + "\" ,\"i\")",  // same as e.g. ... "FILTER regex(?city, "Cardiff", "i")",
+	"}LIMIT 1",
 
