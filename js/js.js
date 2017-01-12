@@ -10,6 +10,7 @@
 
 //changes the colour of the buttons if they are checked.
 function checkBoxSelection(CheckboxID, LblID) {
+	"use strict";
 	var labelID = document.getElementById(LblID);
 
 	if(document.getElementById(CheckboxID).checked == true) {
@@ -37,12 +38,13 @@ var query = [  //save SPARQL query in JavaScript variable called 'query'
 "PREFIX type: <http://dbpedia.org/class/yago/>",
 "PREFIX prop: <http://dbpedia.org/property/>",
 
-"SELECT ?lat ?long ?city",
+"SELECT ?lat ?long ?location",
 "WHERE{",
-"?a geo:lat ?lat;",
-"geo:long ?long;",
-"rdfs:label ?city.",
-"FILTER regex(?city, \"" + document.getElementById("search-box").value + "\" ,\"i\")",  // same as e.g. ... "FILTER regex(?city, "Cardiff", "i")",
+"?a dbo:location ?location;",
+"geo:lat ?lat;",
+"geo:long ?long.",
+"?location dbo:country dbr:United_Kingdom.",
+"FILTER regex(?location, \"" + document.getElementById("search-box").value + "\" ,\"i\")",  // same as e.g. ... "FILTER regex(?city, "Cardiff", "i")",
 "}LIMIT 1",
 ].join(" ");
 
@@ -67,7 +69,7 @@ function getLatLong(data){
 	for (i = 0; i< data.results.bindings.length; i++){
 			var latitude =  parseFloat(data.results.bindings[i].lat.value);
 			var longitude = parseFloat(data.results.bindings[i].long.value);
-			var city = data.results.bindings[i].city.value;
+			var location = data.results.bindings[i].location.value;
 		}
 
 	//plot latitude and longitude on map
