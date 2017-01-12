@@ -1,13 +1,4 @@
 
- //this is the function for the map when the page first loads.
-	  var map;
-	  function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), { //draw map in map div
-          center: {lat: 51.5, lng: -0.11666666666666667}, //position center based on latitude and lonitude - United Kingdom
-          zoom: 7
-        });
-      }
-
 //changes the colour of the buttons if they are checked.
 function checkBoxSelection(CheckboxID, LblID) {
 	"use strict";
@@ -67,22 +58,29 @@ btn.addEventListener("click", function() { //when button is clicked...
 
 function getLatLong(data){
 	//loop through JSON to get results
-	var table = tbl  = document.createElement('table');
 	
-	var attractionType = data.head.vars[1];
-	var locationHeader = data.head.vars[0];
-
-	for (i = 0; i< data.results.bindings.length; i++){
-			var latitude =  parseFloat(data.results.bindings[i].lat.value);
-			var longitude = parseFloat(data.results.bindings[i].long.value);
-			var attraction = data.results.bindings[i].museums.value;
-			var location = data.results.bindings[i].location.value;
+	var attractionType = data.head.vars[1]; //header for table. retrieves "museum"
+	var locationHeader = data.head.vars[0]; //header for table. retrieves "location"
+    var locations = [];
+	for (i = 0; i< data.results.bindings.length; i++){ //loops through JSON 
+			var latitude =  parseFloat(data.results.bindings[i].lat.value); //gets latitude
+			var longitude = parseFloat(data.results.bindings[i].long.value); //gets longitude
+			var attraction = data.results.bindings[i].museums.value; //gets name of museum
+			var location = data.results.bindings[i].location.value; //gets location name
 			
-
+	        
+			locations.push({name:attraction, latlng: new google.maps.LatLng(latitude, longitude)} );
+			
 	//plot latitude and longitude on map
+	drawMap(latitude, longitude, locations, location); //passes parameters to drawMap function
 	
-	drawMap(latitude, longitude, location);
-    resultsPanel.innerHTML += "<br />" + attractionType + "<br />" + " Location: " + location + "  Name: " + attraction;
+    resultsPanel.innerHTML += "<br />" 
+						   + attractionType 
+						   + "<br />" 
+						   + " Location: " 
+						   + location 
+						   + "  Name: " 
+						   + attraction; //this would look better displayed in a table. 
 	
 	}
 	
@@ -92,7 +90,7 @@ function getLatLong(data){
 
 
 
-function drawMap(latValue, longValue, location) {
+function drawMap(latValue, longValue, locations, location) {
 		var map;
 		var myLatLong = {lat: latValue, lng: longValue};
 		
@@ -101,13 +99,13 @@ function drawMap(latValue, longValue, location) {
           zoom: 10
         });
 		
+		for(i = 0; i < locations.length; i++){
 		var marker = new google.maps.Marker({
-          position: myLatLong,
-          map: map,
-		  title: location
-		  
+          position: locations[i].latlng, 
+		  map:map, 
+		  title:locations[i].name      		  
       });
-	  
+		}
 }
 
 //Show map and results div on click on search
