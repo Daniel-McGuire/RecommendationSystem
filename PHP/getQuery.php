@@ -1,14 +1,14 @@
 <?php
 require_once('C:\xampp\htdocs\PHP\connectSQL.php'); //connect to database
 
-$query = "SELECT query FROM queries WHERE Criteria = 'testingtesting'"; //get SPARQL query from queries table for castles
+$query = "SELECT query FROM queries WHERE Criteria = 'testingtesting'"; //get SPARQL query from queries table
 
 $response = @mysqli_query($dbc, $query); 
 
 if($response){
 	while($row = mysqli_fetch_array($response)){
        echo
-       $row['query'];
+       $row['query']; 
       } 
 }
 else {

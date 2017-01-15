@@ -27,7 +27,6 @@ function showDiv() {
 	}
 
 
-	
 function getSPARQL_JSON(x) { 
 	var url = "http://dbpedia.org/sparql";
 	var query = "hello";
