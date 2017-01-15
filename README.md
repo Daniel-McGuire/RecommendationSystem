@@ -8,5 +8,10 @@ Rhiannon Ayres -
 
 # TODO List
 
-* Get coordinates from search and plot on Google maps
-* Fix layout
+*Add style to new test-btn
+*validation - if no location entered then alert and return false
+*validation - only one selection at a time
+*add text box or similar to results panel so text doesnt run past results div
+*maybe add results into a table - not a neccessity. 
+
+
