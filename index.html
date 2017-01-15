@@ -5,6 +5,7 @@
 <head>
 <link rel = "stylesheet" href="css/style.css"> <!-- link style sheet-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs-UURlhhvNfZvmawM1vuzc3F2zLfrcuk"async defer></script><!--links google map API. "&callback=initMap" calls the initMap function-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta name="viewport" content="initial-scale=5.0"> <!--sets zoom for google maps-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,29 +21,21 @@
 <p> Enter a location and we will find local attractions for you! </p>
 </div>
 <div id = "input">
-
+<input id="test-btn" value="Search for shopping centres in Cardiff" type="submit" onmouseover="getQueries();" onclick="showDiv(); getSPARQL_JSON(1);"/>
+</div>
+<p>
+Or try it yourself...
+</p>
+<div class="selection_box">
 <!-- searching is not ready yet -->
 <!--<form id="searchthis" action="/search" style="display:inline;" method="get">*/-->
 <input id="search-box" name="q" size="40" type="text" placeholder="Start searching now..."/>
-<input id="search-btn" value="Go" type="submit" onclick="showDiv()"/>
-</div>
-<p>
-Or...
-</p>
-<div class="selection_box">
-  <select>
-    <option value="London">London</option>
-    <option value="Cardiff">Cardiff</option>
-    <option value="Manchester">Manchester</option>
-    <option value="Swansea">Swansea</option>
-  </select>
+<input id="search-btn" value="Go" type="submit" onclick="showDiv();getSPARQL_JSON(0);"/>
 </div>
 <br>
 
 
 <div id = "selection" class="col-12" align="center">
-	<label for="parks" class="buttonStyle col-3" id = "parksLbl">Parks</label>
-	<input type="checkbox" id="parks" onchange="checkBoxSelection('parks', 'parksLbl')">
 	<label for="shopping" class="buttonStyle col-3" id ="shoppingLbl">Shopping Centres</label>
 	<input type="checkbox" id="shopping" onchange="checkBoxSelection('shopping', 'shoppingLbl')">
 	<label for="histBuild" class="buttonStyle col-3" id = "histBuildLbl">Historic Buildings</label>
@@ -51,15 +44,8 @@ Or...
 	<input type="checkbox" id="museums" onchange="checkBoxSelection('museums', 'MuseumsLbl')">
 	<label for="castles" class="buttonStyle col-3" id = "castlesLbl">Castles</label>
 	<input type="checkbox" id="castles" onchange="checkBoxSelection('castles', 'castlesLbl')">
-	<label for="pubs" class="buttonStyle col-3" id = "pubsLbl">Pubs</label>
-	<input type="checkbox" id="pubs" onchange="checkBoxSelection('pubs', 'pubsLbl')">
-	<label for="gardens" class="buttonStyle col-3" id = "gardensLbl">Gardens</label>
-	<input type="checkbox" id="gardens" onchange="checkBoxSelection('gardens', 'gardensLbl')">
-	<label for="Centre" class = "buttonStyle col-3" id = "leiCenLbl">Leisure Centres</label>
-	<input type="checkbox" id="Centre" onchange="checkBoxSelection('Centre', 'leiCenLbl')">
 </div>
-<!-- END city dropdown -->
-
+<!-- END selection -->
 
 
 <div id = "map">
@@ -67,8 +53,7 @@ Or...
 </div>
 
 <div id = "results" class="col-4">
-
-
+    <!-- results loaded through mySQL, AJAX and PHP -->
 </div>
 
 
