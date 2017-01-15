@@ -8,8 +8,8 @@ function checkBoxSelection(CheckboxID, LblID) {
 	var labelID = document.getElementById(LblID);
 
 	if(document.getElementById(CheckboxID).checked == true) {
-	labelID.style.backgroundColor= "#789E9E";
-	labelID.style.color= "white";
+		labelID.style.backgroundColor= "#789E9E";
+		labelID.style.color= "white";
 	}
 	else {
 		labelID.style.backgroundColor= "#cfe2e2";
@@ -29,7 +29,7 @@ function showDiv() {
 
 function getSPARQL_JSON(x) { 
 	var url = "http://dbpedia.org/sparql";
-	var query = "hello";
+	var query = null;
     
 	if (x == 0){ //if search-btn is clicked...
 	if (document.getElementById("shopping").checked == true)
@@ -81,7 +81,7 @@ function getQueries(){
 	hr.onload = function() {
 			if(hr.readyState == 4 && hr.status == 200){
 		    response = hr.responseText; //save the returned query in the response variable			
-	    }
+	        }
 		}
 
     // Send the data to PHP now... and wait for response
@@ -131,10 +131,10 @@ function getLatLong(data){
 	        //adds attraction and lat and long into locations array of objects
 			locations.push({name:attraction, latlng: new google.maps.LatLng(latitude, longitude)} );
 			
-	//plot latitude and longitude on map
-	drawMap(latitude, longitude, locations); //passes parameters to drawMap function
+			//plot latitude and longitude on map
+			drawMap(latitude, longitude, locations); //passes parameters to drawMap function
 	
-    resultsPanel.innerHTML = resultsTitle
+			resultsPanel.innerHTML = resultsTitle
 						   += "<br />" 
 						   + attraction; //this would look better displayed in a table. 
 	}
@@ -154,10 +154,10 @@ function drawMap(latValue, longValue, locations) {
 
 		
 		for(i = 0; i < locations.length; i++){ //loops through locations array/JSON
-		var marker = new google.maps.Marker({ 
-          position: locations[i].latlng, //positions marker based on lat and long
-		  map:map, 
-		  title:locations[i].name //when user hovers over marker, name of location is displayed		  
-      });
+			var marker = new google.maps.Marker({ 
+			position: locations[i].latlng, //positions marker based on lat and long
+			map:map, 
+			title:locations[i].name //when user hovers over marker, name of location is displayed		  
+			});
 		}
 }
