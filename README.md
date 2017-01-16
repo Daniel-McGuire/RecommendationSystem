@@ -4,7 +4,7 @@ Recommendation System for recommending locations for people to travel to in a ne
 This application is developed by:
 
 Daniel McGuire - ST20074252
-Rhiannon Ayres -
+Rhiannon Ayres - ST20048765
 
 # TODO List
 
