@@ -14,4 +14,10 @@ Rhiannon Ayres - ST20048765
 *add text box or similar to results panel so text doesnt run past results div
 *maybe add results into a table - not a neccessity. 
 
+*Need to change database so it saves the location and results into the database. 
+- If the same location is entered in the next 10hours(results unlikely to change on dbpedia) then retrieve the information from the database. 
+- Otherwise, search semantic web. 
+
+
+
 
