@@ -18,6 +18,11 @@ Rhiannon Ayres - ST20048765
 - If the same location is entered in the next 10hours(results unlikely to change on dbpedia) then retrieve the information from the database. 
 - Otherwise, search semantic web. 
 
+*Also need to expose the website as a webservice so when someone enters parameters e.g. location and historic buildings then the website can return the results.
+- need to use postman to demonstrate this. 
+- useful links: https://davidwalsh.name/web-service-php-mysql-xml-json
+		https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api
+
 
 
 
