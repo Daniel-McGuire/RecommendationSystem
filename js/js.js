@@ -1,5 +1,5 @@
 var resultsPanel = document.getElementById("results");
-var response = null;
+var response = "";
 
 
 //changes the colour of the buttons if they are checked.
@@ -27,11 +27,10 @@ function showDiv() {
 	}
 
 
-function getSPARQL_JSON(x) { 
+function getSPARQL_JSON() { 
 	var url = "http://dbpedia.org/sparql";
 	var query = null;
-    
-	if (x == 0){ //if search-btn is clicked...
+
 	if (document.getElementById("shopping").checked == true)
 		{
 			query = [chooseQuery("dbo:ShoppingMall")].join(" ");
@@ -49,44 +48,69 @@ function getSPARQL_JSON(x) {
 			query = [chooseQuery("dbo:Castle")].join(" ");
 		}
 		
-	}
 	
-	
-	if (x == 1){ //if test-btn is clicked...
-		query = response; //value of response variable has been changed in the getQueries() function
-	}
-	
-
 	//create variable for the URI of the query called 'queryURl'
 	var queryUrl= url+"?query="+ encodeURIComponent(query) +"&format=json";
 	var HTTPRequest = new XMLHttpRequest();
 
 	HTTPRequest.open('GET', queryUrl); //'POST' = send data 'GET' = receive
 		HTTPRequest.onload = function(){
-		console.log(HTTPRequest.responseText); //prints the JSON to the console to check
 		var JSONData = JSON.parse(HTTPRequest.responseText);
-		getLatLong(JSONData);//send JSON to getLatLong function
+		console.log(JSONData);
+		getJsonData(JSONData);//send JSON to getJsonData function
 		};
 
-	HTTPRequest.send();
+	HTTPRequest.send();	
 
 }
 
-function getQueries(){
+
+function checkDBResults(){
     var hr = new XMLHttpRequest(); // Create XMLHttpRequest object
-    var url = "/PHP/getQuery.php"; 
-    hr.open('GET', url);
+    var url = "/PHP/getDBInfo.php"; 
+	var criteria;
+	var loc = document.getElementById("search-box").value;
+	
+	if(document.getElementById("shopping").checked == true) {
+		criteria = 'Shopping';
+	}
+	
+	if(document.getElementById("histBuild").checked == true) {
+		criteria = 'histBuild';
+	}
+	
+	if(document.getElementById("museums").checked == true) {
+		criteria = 'museums';
+	}
+	
+	if(document.getElementById("castles").checked == true) {
+		criteria = 'castles';
+	}
+	
+    hr.open('GET', url+"?criteria="+criteria+"&location="+loc, true);
+	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	
     // Access the onreadystatechange event for the XMLHttpRequest object
 	hr.onload = function() {
 			if(hr.readyState == 4 && hr.status == 200){
-		    response = hr.responseText; //save the returned query in the response variable			
+		    var response = hr.responseText; //save the returned JSON in the response variable	
+			alert("database response = " + response);
+				if (response == 0){
+					alert("info sent to SPARQL");
+					getSPARQL_JSON();
+				}
+				else {
+					alert("results posted to panel from database");
+					displayResults(response);
+				}
+			
 	        }
 		}
-
-    // Send the data to PHP now... and wait for response
-    hr.send(); // Actually execute the request
+   
+    hr.send();  // Send the data to PHP now... and wait for response
 }
+
+
 
 function chooseQuery(type){
 	//save SPARQL query in JavaScript variable called 'query'
@@ -116,30 +140,95 @@ function chooseQuery(type){
 }
 
 
-function getLatLong(data){ 
+function getJsonData(data){ 
 	//loop through JSON to get results
-	var locations = []; //created empty array called locations
-	
+	var locations = []; //create empty array called locations
 	var resultsTitle = data.head.vars[1]; //retrieves "Results"
+	var results;
 	
 	for (i = 0; i< data.results.bindings.length; i++){ //loops through JSON 
 			var latitude =  parseFloat(data.results.bindings[i].lat.value); //gets latitude
 			var longitude = parseFloat(data.results.bindings[i].long.value); //gets longitude
-			var attraction = data.results.bindings[i].Results.value; //gets name of result e.g."St Fagans"
+			var attraction = data.results.bindings[i].Results.value; //gets name of attraction e.g."St Fagans"
 			var location = data.results.bindings[i].location.value; //gets name of location
 			
 	        //adds attraction and lat and long into locations array of objects
-			locations.push({name:attraction, latlng: new google.maps.LatLng(latitude, longitude)} );
-			
-			//plot latitude and longitude on map
-			drawMap(latitude, longitude, locations); //passes parameters to drawMap function
+			locations.push({name:attraction, latlng:new google.maps.LatLng(latitude, longitude)} );
 	
-			resultsPanel.innerHTML = resultsTitle
+			 results = resultsTitle
 						   += "<br />" 
-						   + attraction; //this would look better displayed in a table. 
+						   + attraction; //this would look better displayed in a table.
+			
+			
 	}
 	
+	showDiv();
+	drawMap(latitude, longitude, locations); //passes parameters to drawMap function
+	resultsPanel.innerHTML = results;
+    postToDB(latitude, longitude, locations); 	
+}
+
+
+function displayResults(results){
 	
+	var JSONData = JSON.parse(results); 
+	console.log(JSONData);
+	var results = JSONData[0].results;
+	var location = JSONData[0].location;
+	var lat = parseFloat(JSONData[0].lat);
+	var longi = parseFloat(JSONData[0].longi);
+	var locations = JSONData[0].mapMarkers;
+	
+    showDiv();
+	drawMap(lat, longi, locations);
+	resultsPanel.innerHTML = results;
+
+
+}
+
+function postToDB(lat, longi, locations){
+    var hr = new XMLHttpRequest(); 
+    var url = "/PHP/postToDB.php";
+    var results = resultsPanel.innerHTML;
+	var loc = document.getElementById("search-box").value;
+	var criteria;
+	var locat = JSON.stringify(locations);
+	 
+	console.log("post to DB function. locations = " + locations);
+	
+	if(document.getElementById("shopping").checked == true) {
+		criteria = 'Shopping';
+	}
+	
+	if(document.getElementById("histBuild").checked == true) {
+		criteria = 'histBuild';
+	}
+	
+	if(document.getElementById("museums").checked == true) {
+		criteria = 'museums';
+	}
+	
+	if(document.getElementById("castles").checked == true) {
+		criteria = 'castles';
+	}
+
+	
+	var vars = "results="+results+"&location="+loc+"&criteria="+criteria+"&lat="+lat+"&longi="+longi+"&locations="+locations; 
+	
+	
+	hr.open('POST', url, true);
+	hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	
+    // Access the onreadystatechange event for the XMLHttpRequest object
+	hr.onload = function() {
+			if(hr.readyState == 4 && hr.status == 200){
+		    alert(hr.responseText); //confirms whether post was successful	
+	        }
+		}
+
+    // Send the data to PHP now... and wait for response
+    hr.send(vars); // Actually execute the request
+
 }
 
 
@@ -160,4 +249,5 @@ function drawMap(latValue, longValue, locations) {
 			title:locations[i].name //when user hovers over marker, name of location is displayed		  
 			});
 		}
+			
 }
