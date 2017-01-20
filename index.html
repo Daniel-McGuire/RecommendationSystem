@@ -21,22 +21,20 @@
 <p> Enter a location and we will find local attractions for you! </p>
 </div>
 <div id = "input">
-<input id="test-btn" value="Search for shopping centres in Cardiff" type="submit" onmouseover="getQueries();" onclick="showDiv(); getSPARQL_JSON(1);"/>
+
 </div>
-<p>
-Or try it yourself...
-</p>
+
 <div class="selection_box">
 <!-- searching is not ready yet -->
 <!--<form id="searchthis" action="/search" style="display:inline;" method="get">*/-->
-<input id="search-box" name="q" size="40" type="text" placeholder="Start searching now..."/>
-<input id="search-btn" value="Go" type="submit" onclick="showDiv();getSPARQL_JSON(0);"/>
+<input id="search-box" size="40" type="text" value="" placeholder="Start searching now..."/>
+<input id="search-btn" value="Go" name="search-btn" type="submit" onclick="checkDBResults();"/>
 </div>
 <br>
 
 
 <div id = "selection" class="col-12" align="center">
-	<label for="shopping" class="buttonStyle col-3" id ="shoppingLbl">Shopping Centres</label>
+	<label for="shopping" class="buttonStyle col-3" name="shopping" id ="shoppingLbl" value="shopping">Shopping Centres</label>
 	<input type="checkbox" id="shopping" onchange="checkBoxSelection('shopping', 'shoppingLbl')">
 	<label for="histBuild" class="buttonStyle col-3" id = "histBuildLbl">Historic Buildings</label>
 	<input type="checkbox" id="histBuild" onchange="checkBoxSelection('histBuild', 'histBuildLbl')">
@@ -52,8 +50,9 @@ Or try it yourself...
 	<!-- Google Map loaded in via JavaScript -->
 </div>
 
-<div id = "results" class="col-4">
-    <!-- results loaded through mySQL, AJAX and PHP -->
+<div id = "results" class="col-4"> 
+	<!-- results loaded through mySQL, AJAX and PHP -->
+
 </div>
 
 
