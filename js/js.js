@@ -56,7 +56,6 @@ function getSPARQL_JSON() {
 	HTTPRequest.open('GET', queryUrl); //'POST' = send data 'GET' = receive
 		HTTPRequest.onload = function(){
 		var JSONData = JSON.parse(HTTPRequest.responseText);
-		console.log(JSONData);
 		getJsonData(JSONData);//send JSON to getJsonData function
 		};
 
@@ -94,13 +93,11 @@ function checkDBResults(){
 	hr.onload = function() {
 			if(hr.readyState == 4 && hr.status == 200){
 		    var response = hr.responseText; //save the returned JSON in the response variable	
-			alert("database response = " + response);
 				if (response == 0){
-					alert("info sent to SPARQL");
+					alert("request sent to SPARQL");
 					getSPARQL_JSON();
 				}
 				else {
-					alert("results posted to panel from database");
 					displayResults(response);
 				}
 			
@@ -161,28 +158,26 @@ function getJsonData(data){
 			
 			
 	}
-	
-	showDiv();
+	showDiv(); //show results div
 	drawMap(latitude, longitude, locations); //passes parameters to drawMap function
-	resultsPanel.innerHTML = results;
-    postToDB(latitude, longitude, locations); 	
+	resultsPanel.innerHTML = results; //post results to results panel
+    postToDB(latitude, longitude, locations); 	//post info to database
 }
 
 
 function displayResults(results){
 	
 	var JSONData = JSON.parse(results); 
-	console.log(JSONData);
 	var results = JSONData[0].results;
 	var location = JSONData[0].location;
 	var lat = parseFloat(JSONData[0].lat);
 	var longi = parseFloat(JSONData[0].longi);
-	var locations = JSONData[0].mapMarkers;
+	var locations = JSON.parse(JSONData[0].mapMarkers);
 	
     showDiv();
 	drawMap(lat, longi, locations);
 	resultsPanel.innerHTML = results;
-
+    alert("results retrieved from database");
 
 }
 
@@ -193,8 +188,7 @@ function postToDB(lat, longi, locations){
 	var loc = document.getElementById("search-box").value;
 	var criteria;
 	var locat = JSON.stringify(locations);
-	 
-	console.log("post to DB function. locations = " + locations);
+
 	
 	if(document.getElementById("shopping").checked == true) {
 		criteria = 'Shopping';
@@ -213,7 +207,7 @@ function postToDB(lat, longi, locations){
 	}
 
 	
-	var vars = "results="+results+"&location="+loc+"&criteria="+criteria+"&lat="+lat+"&longi="+longi+"&locations="+locations; 
+	var vars = "results="+results+"&location="+loc+"&criteria="+criteria+"&lat="+lat+"&longi="+longi+"&locations="+locat; 
 	
 	
 	hr.open('POST', url, true);
@@ -228,7 +222,7 @@ function postToDB(lat, longi, locations){
 
     // Send the data to PHP now... and wait for response
     hr.send(vars); // Actually execute the request
-
+    
 }
 
 
@@ -240,7 +234,6 @@ function drawMap(latValue, longValue, locations) {
           center: myLatLong, //position center based on latitude and lonitude
           zoom: 10 
         });
-
 		
 		for(i = 0; i < locations.length; i++){ //loops through locations array/JSON
 			var marker = new google.maps.Marker({ 
@@ -249,5 +242,7 @@ function drawMap(latValue, longValue, locations) {
 			title:locations[i].name //when user hovers over marker, name of location is displayed		  
 			});
 		}
-			
+		
 }
+			
+
