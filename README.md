@@ -8,10 +8,6 @@ This application is developed by:
 
 # TODO List
 
-- validation - if no location entered then alert and return false - Daniel
-- validation - only one selection at a time - Daniel
-- add text box or similar to results panel so text doesnt run past results div - Daniel
-
 - Need to expose the website as a webservice so when someone enters parameters e.g. location and historic buildings then the website can return the results.
 - need to use postman to demonstrate this on youtube video.
 - useful links: https://davidwalsh.name/web-service-php-mysql-xml-json
