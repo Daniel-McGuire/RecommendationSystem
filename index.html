@@ -1,7 +1,5 @@
 <!doctype html>
-
 <html>
-
 <head>
 <link rel = "stylesheet" href="css/style.css"> <!-- link style sheet-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs-UURlhhvNfZvmawM1vuzc3F2zLfrcuk"async defer></script><!--links google map API. "&callback=initMap" calls the initMap function-->
@@ -10,29 +8,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Recommendation system </title>
-
 </head>
-
 <body>
 <div id="main">
 <div id = "header">
 <h1> Recommendation System </h1>
-
 <p> Enter a location and we will find local attractions for you! </p>
 </div>
 <div id = "input">
-
 </div>
 
 <div class="selection_box">
-<!-- searching is not ready yet -->
-<!--<form id="searchthis" action="/search" style="display:inline;" method="get">*/-->
 <input id="search-box" size="40" type="text" value="" placeholder="Start searching now..."/>
 <input id="search-btn" value="Go" name="search-btn" type="submit" onclick="checkDBResults();"/>
 </div>
 <br>
-
-
 <div id = "selection" class="col-12" align="center">
 	<label for="shopping" class="buttonStyle col-3" name="shopping" id ="shoppingLbl" value="shopping">Shopping Centres</label>
 	<input type="checkbox" id="shopping" onchange="checkBoxSelection('shopping', 'shoppingLbl')">
@@ -43,8 +33,6 @@
 	<label for="castles" class="buttonStyle col-3" id = "castlesLbl">Castles</label>
 	<input type="checkbox" id="castles" onchange="checkBoxSelection('castles', 'castlesLbl')">
 </div>
-<!-- END selection -->
-
 
 <div id = "map">
 	<!-- Google Map loaded in via JavaScript -->
@@ -52,13 +40,8 @@
 
 <div id = "results" class="col-4">
 	<!-- results loaded through mySQL, AJAX and PHP -->
-
 </div>
-
-
-
 </div>
 <script type="text/javascript" src="js/js.js"></script> <!--link Javascript doc-->
 </body>
-
 </html>

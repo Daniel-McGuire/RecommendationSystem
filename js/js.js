@@ -1,6 +1,15 @@
 var resultsPanel = document.getElementById("results");
 var response = "";
 
+// Disables search button until the user has typed something
+$(function() {
+    $('#search-btn').attr('disabled', 'disabled');
+})
+
+$('#search-box').keyup(function() {
+    $('#search-btn').attr('disabled', !$('#search-box').val());
+});
+
 //changes the colour of the buttons if they are checked.
 function checkBoxSelection(CheckboxID, LblID) {
 	"use strict";
@@ -105,8 +114,7 @@ var loc = document.getElementById("search-box").value;
 				else {
 					displayResults(response);
 				}
-
-	        }
+	      }
   }
 
     hr.send();  // Send the data to PHP now... and wait for response
@@ -192,7 +200,6 @@ function postToDB(lat, longi, locations){
 	var criteria;
 	var locat = JSON.stringify(locations);
 
-
 	if(document.getElementById("shopping").checked == true) {
 		criteria = 'Shopping';
 	}
@@ -231,7 +238,6 @@ function postToDB(lat, longi, locations){
 function drawMap(latValue, longValue, locations) {
 		var map;
 		var myLatLong = {lat: latValue, lng: longValue};
-
         map = new google.maps.Map(document.getElementById('map'), { //draw map in map div
           center: myLatLong, //position center based on latitude and lonitude
           zoom: 10
@@ -246,12 +252,3 @@ function drawMap(latValue, longValue, locations) {
 		}
 
 }
-
-// Disables search button until the user has typed something
-$(function() {
-    $('#search-btn').attr('disabled', 'disabled');
-})
-
-$('#search-box').keyup(function() {
-    $('#search-btn').attr('disabled', !$('#search-box').val());
-});
